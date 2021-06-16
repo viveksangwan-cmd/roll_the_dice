@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Roll The Dice</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="modal">
+          <button class="close-modal">&times;</button>
+          <h1>Game Rules 😍</h1>
+          <p>
+            <ul>
+              <li>Player have 2 options.</li>
+                <ul>
+                  <li>Roll a dice.</li>
+                  <li>Hold a dice.</li>
+                </ul>
+                <li>After Rolling a dice , value to dice become <strong>1</strong>.Current score become 0 and chance will be given to next player.</li>
+                <li>If the value to dice is not <strong>1</strong> , value will be added to <strong>CURRENT SCORE</strong>.</li>
+                <li>If Player <strong>HOLDS</strong> the dice. <strong>Current Score</strong> will be added to <strong>main score</strong> and chance will be given to next player.  </li>
+                <li>Player who scores <strong>100</strong> first , WINS.🎉 </li>
+            </ul>
+          </p>
+        </div>
+        <div class="overlay"></div>
+      </section>
+      <section class="player player--0 player--active">
+        <h2 class="name" id="name--0">Player 1</h2>
+        <p class="score" id="score--0">0</p>
+        <div class="current">
+          <p class="current-label">Current</p>
+          <p class="current-score" id="current--0">0</p>
+        </div>
+      </section>
+      <section class="player player--1">
+        <h2 class="name" id="name--1">Player 2</h2>
+        <p class="score" id="score--1">0</p>
+        <div class="current">
+          <p class="current-label">Current</p>
+          <p class="current-score" id="current--1">0</p>
+        </div>
+      </section>
+
+      <img src="dice-5.png" alt="Playing dice" class="dice" />
+      <button class="btn btn--new">🔄 New game</button>
+      <button class="btn btn--roll">🎲 Roll dice</button>
+      <button class="btn btn--hold">📥 Hold</button>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
