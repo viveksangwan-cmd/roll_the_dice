@@ -17,6 +17,7 @@ const dice = document.querySelector('.dice');
 const rollDice = document.querySelector('.btn--roll');
 const rollHold = document.querySelector('.btn--hold');
 const newGame = document.querySelector('.btn--new');
+let gameOver = false;
 
 // ------------------Rules------------------------------
 const closeModal = function () {
@@ -35,6 +36,7 @@ document.addEventListener('keydown', function (e) {
 // -------------Game-------------------------------
 
 function playWins() {
+  gameOver = true;
   rollDice.removeEventListener('click', rollDiceFunction);
   rollHold.removeEventListener('click', changePlayer);
   if (activePlayer == '.player--0') {
@@ -46,14 +48,16 @@ function playWins() {
 
 function changePlayer() {
   addCurrentScoreToMainCourse();
-  if (activePlayer == '.player--0') {
-    player1.classList.remove('player--active');
-    player2.classList.add('player--active');
-    activePlayer = '.player--1';
-  } else {
-    player1.classList.add('player--active');
-    player2.classList.remove('player--active');
-    activePlayer = '.player--0';
+  if (!gameOver) {
+    if (activePlayer == '.player--0') {
+      player1.classList.remove('player--active');
+      player2.classList.add('player--active');
+      activePlayer = '.player--1';
+    } else {
+      player1.classList.add('player--active');
+      player2.classList.remove('player--active');
+      activePlayer = '.player--0';
+    }
   }
 }
 
@@ -98,7 +102,7 @@ function oneOnDish() {
 
 function rollDiceFunction() {
   const value = Math.round(Math.random() * 5) + 1;
-  dice.src = `dice-${value}.png`;
+  dice.src = `./images/dice-${value}.png`;
   if (value != 1) {
     addtoCurrentScore(value);
   } else {
@@ -115,5 +119,15 @@ newGame.addEventListener('click', function () {
   player2CurrentScore.textContent = 0;
   player1Score.textContent = 0;
   player2Score.textContent = 0;
-  newGame.textContent = '🔄 New game';
+  gameOver = false;
+  rollDice.addEventListener('click', rollDiceFunction);
+  rollHold.addEventListener('click', changePlayer);
+  if (activePlayer == '.player--0') {
+    document.querySelector('#name--0').textContent = 'Player 1';
+  } else {
+    player2.classList.remove('player--active');
+    player1.classList.add('player--active');
+    document.querySelector('#name--1').textContent = 'Player 2';
+  }
+  activePlayer = '.player--0';
 });
